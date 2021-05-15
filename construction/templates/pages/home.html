@@ -74,7 +74,7 @@
             <h3>Construction Sites</h3>
           </div>
         </a>
-        <div class="box">
+        <div class="box" onclick="xls_modal();">
           <i class="fa fa-folder" aria-hidden="true"></i>
           <h3>Ledger</h3>
         </div>
@@ -233,6 +233,19 @@
           </form>
 
           <img src="{% static 'images/flower.png' %}" />
+        </div>
+      </div>
+    </div>
+    <div id="xls_modal" class="download_xls">
+      <div class="xls_modal">
+        <a href="{% url 'xls_download' %}" style="text-decoration: none">
+          <h1 onclick="close_xls_modal();">
+            <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+            &nbsp;&nbsp;Download XLS
+          </h1></a
+        >
+        <div class="close" onclick="close_xls_modal();">
+          <i class="fa fa-times" aria-hidden="true"></i>
         </div>
       </div>
     </div>
