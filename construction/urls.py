@@ -7,6 +7,7 @@ from django.contrib.auth import views as auth_views
 from .forms import CustomAuthForm
 
 urlpatterns = [
+    path('', views.UltimateHomeView),
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html',
                                                          authentication_form=CustomAuthForm), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),

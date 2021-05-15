@@ -10,6 +10,10 @@ from django.http import HttpResponse
 from django.utils.timezone import datetime
 
 
+def UltimateHomeView(request):
+    return redirect('/accounts/login/')
+
+
 @login_required
 def transactionHomeView(request):
     trans_datas = []
