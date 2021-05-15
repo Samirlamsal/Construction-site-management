@@ -1,0 +1,158 @@
+{% load static%} {% load humanize %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{%static 'css/home.css'%}" />
+    <script
+      rel="javascript"
+      type="text/javascript"
+      src="{% static 'scripts.js' %}"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <div class="title">
+        <h4>Hello {{request.user}}, Welcome back</h4>
+        <h2>Construction Sites</h2>
+      </div>
+      <div class="profileheader">
+        <i class="fa fa-bell-o" aria-hidden="true"></i>
+        <i class="fa fa-cog"></i>
+        <div class="image" id="image" onclick="showmenu();">
+          <img src="{{request.user.site_user.image.url}}" />
+        </div>
+      </div>
+      <div class="menu" id="menu">
+        <a href="#">
+          <h2>
+            <img src="{{request.user.site_user.image.url}}" />My Profile
+          </h2></a
+        >
+        <p>
+          <a href="{% url 'logout' %}"
+            ><i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;&nbsp;Log
+            Out</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="navig">
+        <a href="{% url 'transaction_home' %}" style="text-decoration: none">
+          <div class="box">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <h3>Homescreen</h3>
+          </div></a
+        >
+        <a href="{% url 'construction_home' %}" style="text-decoration: none">
+          <div class="box">
+            <i class="fa fa-building" aria-hidden="true"></i>
+            <h3>Construction Sites</h3>
+          </div></a
+        >
+        <div class="box" onclick="xls_modal();">
+          <i class="fa fa-folder" aria-hidden="true"></i>
+          <h3>Ledger</h3>
+        </div>
+        <div class="box">
+          <i class="fa fa-cog"></i>
+          <h3>Button</h3>
+        </div>
+        <div class="box">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          <h3>Users and Accounts</h3>
+        </div>
+        <div class="box">
+          <i class="fa fa-sliders" aria-hidden="true"></i>
+          <h3>Settings</h3>
+        </div>
+        <div class="box">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+          <h3>Recycle Bin</h3>
+        </div>
+      </div>
+      <div class="construction_detail_container">
+        {% for construction_detail in construction_detail %}
+        <div class="construction_detail">
+          <div class="left">
+            <img src="{{construction_detail.image.url}}" />
+          </div>
+          <div class="right">
+            <div class="title">
+              <h1>{{construction_detail.name}}</h1>
+            </div>
+
+            <div class="card1">
+              <div class="card1top">
+                <div class="name">
+                  <p>Supervised by</p>
+                  <h2>{{construction_detail.superviser.fullname}}</h2>
+                </div>
+                <div class="workernum">
+                  <p>No of employees</p>
+                  <h2>{{construction_detail.num_workers}}</h2>
+                </div>
+              </div>
+              <div class="card1bottom">
+                <p>Working status</p>
+                <div class="status">
+                  <h4 style="background: #b3b1b1">Working</h4>
+                  <h4>Halted</h4>
+                  <h4>Completed</h4>
+                </div>
+              </div>
+            </div>
+            <div class="card2">
+              <div class="budget">
+                <p>Total Budget</p>
+                <h2>Rs {{construction_detail.budget|intcomma}}</h2>
+              </div>
+              <div class="expensed">
+                <p>Expensed</p>
+                <h2>Rs {{construction_detail.expensed|intcomma}}</h2>
+              </div>
+            </div>
+            <h3>
+              <i class="fa fa-home" aria-hidden="true"></i
+              >&nbsp;&nbsp;{{construction_detail.location}}
+            </h3>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div id="xls_modal" class="download_xls">
+      <div class="xls_modal">
+        <a href="{% url 'xls_download' %}" style="text-decoration: none">
+          <h1 onclick="close_xls_modal();">
+            <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+            &nbsp;&nbsp;Download XLS
+          </h1></a
+        >
+        <div class="close" onclick="close_xls_modal();">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

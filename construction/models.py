@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Site_User(models.Model):
     name = models.OneToOneField(User, on_delete=models.CASCADE)
+    fullname = models.CharField(max_length=100, null=True, blank=True)
     TYPE_ROLE = (
         ('Sitehead', 'Sitehead'),
         ('Superviser', 'Superviser'),
@@ -18,13 +19,20 @@ class Site_User(models.Model):
 
 class Construction_Site(models.Model):
     name = models.CharField(max_length=50)
+    image = models.ImageField(
+        upload_to="site_profiles/",  null=True, blank=True)
+    num_workers = models.IntegerField(null=True, blank=True)
+    budget = models.IntegerField(null=True, blank=True)
+    expensed = models.IntegerField(null=True, blank=True)
     WORKING_STATUS = (
         ('Working', 'Working'),
         ('Halted', 'Halted'),
         ('Completed', 'Completed'),
     )
     working_status = models.CharField(max_length=50, choices=WORKING_STATUS)
-    superviser = models.ManyToManyField(Site_User)
+    superviser = models.ForeignKey(
+        Site_User, on_delete=models.SET_NULL, null=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -37,7 +45,14 @@ class Transaction(models.Model):
         ('Online Payment', 'Online Payment'),
         ('Hard Cash', 'Hard Cash'),
     )
+    TRANSACTION_TYPE = (
+        ('Debit', 'Debit'),
+        ('Credit', 'Credit'),
+    )
+
     trans_method = models.CharField(max_length=100, choices=TRANSACTION_MEANS)
+    trans_type = models.CharField(
+        max_length=50, choices=TRANSACTION_TYPE,  null=True, blank=True)
     trans_date = models.DateTimeField(auto_now_add=True)
     comments = models.TextField()
     confirmation_status = models.BooleanField(default=False)

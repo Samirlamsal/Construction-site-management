@@ -11,6 +11,8 @@ urlpatterns = [
                                                          authentication_form=CustomAuthForm), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('transaction_home/', views.transactionHomeView, name='transaction_home'),
+    path('construction_home', views.constructionHomeView, name='construction_home'),
+    path('xls_download', views.export_users_xls, name='xls_download'),
 
 
 

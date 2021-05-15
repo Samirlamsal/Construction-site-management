@@ -3,6 +3,16 @@ function createtransactions(){
 
 }
 
+function xls_modal(){
+    document.getElementById("xls_modal").style.display = "flex";
+
+}
+
+function close_xls_modal(){
+    document.getElementById("xls_modal").style.display = "none";
+
+}
+
 function closecreatetransactions(){
     document.getElementById("createtransactionmodal").style.display = "none";
 
@@ -21,7 +31,6 @@ function closefiltermodal(){
 var i;
 window.onload = function(){
     i=0;
-    console.log("loaded");
 }
 
 

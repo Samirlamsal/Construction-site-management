@@ -62,14 +62,18 @@
 
     <div class="content">
       <div class="navig">
-        <div class="box">
-          <i class="fa fa-home" aria-hidden="true"></i>
-          <h3>Homescreen</h3>
-        </div>
-        <div class="box">
-          <i class="fa fa-building" aria-hidden="true"></i>
-          <h3>Construction Sites</h3>
-        </div>
+        <a href="{% url 'transaction_home' %}" style="text-decoration: none"
+          ><div class="box">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <h3>Homescreen</h3>
+          </div></a
+        >
+        <a href="{% url 'construction_home' %}" style="text-decoration: none">
+          <div class="box">
+            <i class="fa fa-building" aria-hidden="true"></i>
+            <h3>Construction Sites</h3>
+          </div>
+        </a>
         <div class="box">
           <i class="fa fa-folder" aria-hidden="true"></i>
           <h3>Ledger</h3>
@@ -113,9 +117,10 @@
         <div class="table">
           <table style="width: 100%">
             <tr>
-              <th>TRANSACTION ID</th>
+              <th>ID</th>
               <th>AMOUNT</th>
               <th>STATUS</th>
+              <th>TRANS TYPE</th>
               <th>SUBMITTED BY</th>
               <th>CONSTRUCTION SITE</th>
               <th>DATE</th>
@@ -134,7 +139,7 @@
                 <i class="fa fa-times" aria-hidden="true"></i>&nbsp;
                 {{trans_data.status}} {%endif%}
               </td>
-
+              <td>{{trans_data.trans_type}}</td>
               <td>{{trans_data.trans_user}}</td>
               <td>{{trans_data.trans_site.name}}</td>
               <td>{{trans_data.trans_date}}</td>
