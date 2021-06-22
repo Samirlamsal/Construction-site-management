@@ -757,4 +757,5 @@ p:hover {
   letter-spacing: 0.08em;
   color: #f6f8f9;
   font-weight: 600;
+  box-shadow: 5px 5px 5px #4094f7;
 }
