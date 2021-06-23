@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    {% block content1 %}{% endblock %}
+
+    <div class="content">
+      
+      <div class="navig">
+        <a href="{% url 'transaction_home' %}" style="text-decoration: none"
+          ><div class="box">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <h3>Homescreen</h3>
+          </div></a
+        >
+        <a href="{% url 'construction_home' %}" style="text-decoration: none">
+          <div class="box">
+            <i class="fa fa-building" aria-hidden="true"></i>
+            <h3>Construction Sites</h3>
+          </div>
+        </a>
+        <div class="box" onclick="xls_modal();">
+          <i class="fa fa-folder" aria-hidden="true"></i>
+          <h3>Ledger</h3>
+        </div>
+        <div class="box">
+          <i class="fa fa-cog"></i>
+          <h3>Button</h3>
+        </div>
+        <div class="box">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          <h3>Users and Accounts</h3>
+        </div>
+        <div class="box">
+          <i class="fa fa-sliders" aria-hidden="true"></i>
+          <h3>Settings</h3>
+        </div>
+        <div class="box">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+          <h3>Recycle Bin</h3>
+        </div>
+      </div>
+      {% block content2%} {% endblock %}
+      {% block content3 %} {% endblock %}
+      <script
+      rel="javascript"
+      type="text/javascript"
+      src="{% static 'scripts.js' %}"
+    ></script>
+    
+  </body>
+</html>

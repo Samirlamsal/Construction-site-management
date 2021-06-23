@@ -227,6 +227,36 @@ input:focus {
   border-top: 1px solid rgb(243, 239, 239);
 }
 
+.sitetoggle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.sitetoggle .sitenames {
+  width: 120px;
+  height: 30px;
+  white-space: nowrap;
+  padding-right: 5px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.sitetoggle .sitenames:hover {
+  cursor: pointer;
+}
+
+.sitetoggle h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  color: #252c32;
+}
+
 .table th {
   font-style: normal;
   font-weight: 600;
