@@ -1,80 +1,28 @@
 {% extends 'pages/base.html' %} {% load static%} {% load humanize %}
 
 <body>
-  {% block content1 %}
-  <div class="header">
-    <div class="title">
-      <h4>Hello {{request.user}}, Welcome back</h4>
-      <h2>Construction Sites</h2>
-    </div>
-    <div class="profileheader">
-      <i class="fa fa-bell-o" aria-hidden="true"></i>
-      <i class="fa fa-cog"></i>
-      <div class="image" id="image" onclick="showmenu();">
-        <img src="{{request.user.site_user.image.url}}" />
-      </div>
-    </div>
-    <div class="menu" id="menu">
-      <a href="#">
-        <h2><img src="{{request.user.site_user.image.url}}" />My Profile</h2></a
-      >
-      <p>
-        <a href="{% url 'logout' %}"
-          ><i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;&nbsp;Log
-          Out</a
-        >
-      </p>
-    </div>
-  </div>
-  {% endblock %}
-
   <div class="content">
     {% block content2 %}
     <div class="construction_detail_container">
       {% for construction_detail in construction_detail %}
-      <div class="construction_detail">
-        <div class="left">
-          <img src="{{construction_detail.image.url}}" />
+      <div class="constructiondetailcard">
+        <div class="top">
+          <h3>Last Updated: 3 days ago</h3>
         </div>
-        <div class="right">
-          <div class="title">
-            <h1>{{construction_detail.name}}</h1>
+        <div class="mid">
+          <h4>{{construction_detail.location}}</h4>
+          <h3>{{construction_detail.name}}</h3>
+          <h2>Today Expenditure</h2>
+          <h1>{{construction_detail.expensed|intcomma}}</h1>
+        </div>
+        <div class="bottom">
+          <div class="name">
+            <img src="{{request.user.site_user.image.url}}" />
+            <h2>{{construction_detail.superviser.fullname}}</h2>
           </div>
-
-          <div class="card1">
-            <div class="card1top">
-              <div class="name">
-                <p>Supervised by</p>
-                <h2>{{construction_detail.superviser.fullname}}</h2>
-              </div>
-              <div class="workernum">
-                <p>No of employees</p>
-                <h2>{{construction_detail.num_workers}}</h2>
-              </div>
-            </div>
-            <div class="card1bottom">
-              <p>Working status</p>
-              <div class="status">
-                <h4 style="background: #b3b1b1">Working</h4>
-                <h4>Halted</h4>
-                <h4>Completed</h4>
-              </div>
-            </div>
+          <div class="more">
+            <a href="#">More &nbsp;&nbsp;<i class="fa fa-arrow-right"></i> </a>
           </div>
-          <div class="card2">
-            <div class="budget">
-              <p>Total Budget</p>
-              <h2>Rs {{construction_detail.budget|intcomma}}</h2>
-            </div>
-            <div class="expensed">
-              <p>Expensed</p>
-              <h2>Rs {{construction_detail.expensed|intcomma}}</h2>
-            </div>
-          </div>
-          <h3>
-            <i class="fa fa-home" aria-hidden="true"></i
-            >&nbsp;&nbsp;{{construction_detail.location}}
-          </h3>
         </div>
       </div>
       {% endfor %}

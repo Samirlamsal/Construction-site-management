@@ -1,36 +1,6 @@
 {% extends 'pages/base.html' %} {% load static %}
 
 <body>
-  {% block content1 %}
-  <div class="header">
-    <div class="title">
-      <h4>Hello {{request.user}}, Welcome back</h4>
-      <h2>Your Dashboard is updated</h2>
-    </div>
-    <div class="profileheader">
-      <i class="fa fa-bell-o" aria-hidden="true"></i>
-      <i class="fa fa-cog"></i>
-      <div class="image" id="image" onclick="showmenu();">
-        <img src="{{request.user.site_user.image.url}}" />
-      </div>
-    </div>
-    <div class="menu" id="menu">
-      <a href="#">
-        <h2><img src="{{request.user.site_user.image.url}}" />My Profile</h2></a
-      >
-      <p>
-        <a href="{% url 'logout' %}"
-          ><i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;&nbsp;Log
-          Out</a
-        >
-      </p>
-    </div>
-  </div>
-
-  <div class="search">
-    <input type="text" id="search" name="search" placeholder="Search..." />
-  </div>
-  {% endblock %}
   <div class="content">
     {% block content2%}
 

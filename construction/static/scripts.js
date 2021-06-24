@@ -52,17 +52,17 @@ function showmenu() {
 
 
 
-
+ 
 $("#sitenames").click(function () {
     var nameofsite = "this is the text to be submitted";
     if (nameofsite) {
         $.ajax({
             url: '{% url "transaction_home" %}',
-            datas: {
+            data: {
                 'name': nameofsite,
             },
             dataType: 'json',
-            success: function (datas) {
+            success: function (data) {
                 console.log("Success");
             }
         }
