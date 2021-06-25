@@ -18,7 +18,8 @@ def UltimateHomeView(request):
 def transactionHomeView(request):
     trans_datas = []
     myFilter = []
-    workplace = Construction_Site.objects.all()
+    username = request.user.site_user.name
+    workplace = Construction_Site.objects.filter(superviser__name=username)
     if request.method == 'POST':
         data = {
             'trans_user': request.user.site_user,
@@ -33,11 +34,10 @@ def transactionHomeView(request):
         return redirect('/transaction_home/')
     else:
         form = TransactionForm()
-        trans_datas = Transaction.objects.all()
+
+        trans_datas = Transaction.objects.filter(trans_user__name=username)
         myFilter = TransactionFilter(request.GET, queryset=trans_datas)
         trans_datas = myFilter.qs
-    if request.is_ajax():
-        print("Ajax request")
     return render(request, 'pages/home.html', {'trans_datas': trans_datas, 'myFilter': myFilter, 'form': form, 'workplace': workplace})
 
 

@@ -30,9 +30,9 @@ class Construction_Site(models.Model):
         ('Completed', 'Completed'),
     )
     working_status = models.CharField(max_length=50, choices=WORKING_STATUS)
+    location = models.CharField(max_length=100, null=True, blank=True)
     superviser = models.ForeignKey(
         Site_User, on_delete=models.SET_NULL, null=True)
-    location = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name
