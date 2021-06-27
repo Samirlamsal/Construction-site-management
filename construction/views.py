@@ -43,7 +43,9 @@ def transactionHomeView(request):
 
 @login_required
 def constructionHomeView(request):
-    construction_detail = Construction_Site.objects.all()
+    username = request.user.site_user.name
+    construction_detail = Construction_Site.objects.filter(
+        superviser__name=username)
     return render(request, 'pages/constructionpage.html', {'construction_detail': construction_detail})
 
 

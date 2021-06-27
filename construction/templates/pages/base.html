@@ -40,7 +40,7 @@
     </div>
     <div class="menu" id="menu">
       <a href="#">
-        <h2><img src="{{request.user.site_user.image.url}}" />My Profile</h2></a
+        <h2><img src="{{request.user.site_user.image.url}}" />{{request.user}}</h2></a
       >
       <p>
         <a href="{% url 'logout' %}"
