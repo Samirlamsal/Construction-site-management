@@ -26,9 +26,12 @@ def transactionHomeView(request):
             'amount': request.POST['amount'],
             'trans_site': request.POST['trans_site'],
             'trans_method': request.POST['trans_method'],
-            'comments': request.POST['comments']
+            'comments': request.POST['comments'],
+            'image': request.FILES.get('image')
         }
-        form = TransactionForm(data)
+        print(data)
+        form = TransactionForm(data, request.FILES)
+
         if form.is_valid():
             form.save()
         return redirect('/transaction_home/')
