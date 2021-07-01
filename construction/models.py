@@ -58,6 +58,8 @@ class Transaction(models.Model):
     confirmation_status = models.BooleanField(default=False)
     trans_site = models.ForeignKey(
         Construction_Site, on_delete=models.SET_NULL, blank=True, null=True)
+    image = models.ImageField(
+        upload_to='transactionimages/', null=True, blank=True)
 
     def __str__(self):
         return str(self.trans_user) + ' ' + self.comments[:10]

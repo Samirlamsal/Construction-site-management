@@ -35,10 +35,11 @@
             <th>AMOUNT</th>
             <th>STATUS</th>
             <th>TRANS TYPE</th>
-            <th>SUBMITTED BY</th>
-            <th>CONSTRUCTION SITE</th>
+            <!-- <th>SUBMITTED BY</th> -->
+            <!-- <th>CONSTRUCTION SITE</th> -->
             <th>DATE</th>
             <th>COMMENTS</th>
+            <th>CREDENTIALS</th>
           </tr>
           {% for trans_data in trans_datas %}
           <tr>
@@ -54,10 +55,19 @@
               {{trans_data.status}} {%endif%}
             </td>
             <td>{{trans_data.trans_type}}</td>
-            <td>{{trans_data.trans_user}}</td>
-            <td>{{trans_data.trans_site.name}}</td>
+            <!-- <td>{{trans_data.trans_user}}</td> -->
+            <!-- <td>{{trans_data.trans_site.name}}</td> -->
             <td>{{trans_data.trans_date}}</td>
             <td>{{trans_data.comments}}</td>
+            <td>
+              {% if trans_data.image %}
+              <a target="_blank" href="{{ trans_data.image.url }}"
+                ><i class="fa fa-paperclip"></i>
+              </a>
+              {% else %}
+              <a href="#"><i class="fa fa-paperclip"></i> </a>
+              {% endif %}
+            </td>
           </tr>
           {% endfor %}
         </table>
@@ -78,20 +88,20 @@
       <div class="form">
         <form method="get">
           <div class="hr"></div>
-          <div class="input_field">
+          <!-- <div class="input_field">
             <h3>Submited by</h3>
             {{myFilter.form.trans_user}}
-          </div>
-          <div class="hr"></div>
+          </div> -->
+          <!-- <div class="hr"></div> -->
           <div class="input_field">
             <h3>Since</h3>
             {{myFilter.form.start_date}}
           </div>
           <div class="hr"></div>
-          <div class="input_field">
+          <!-- <div class="input_field">
             <h3>Construction Site</h3>
             {{myFilter.form.trans_site}}
-          </div>
+          </div> -->
           <div class="hr"></div>
           <div class="input_field">
             <h3>Status</h3>

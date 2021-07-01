@@ -285,11 +285,7 @@ input:focus {
 }
 
 .table td:nth-child(1) {
-  width: 40px;
-}
-
-.table td:nth-child(4) {
-  width: 120px;
+  min-width: 30px;
 }
 
 .table td:nth-child(3) {
@@ -337,7 +333,10 @@ input:focus {
   box-sizing: border-box;
   border-radius: 8px;
   width: 546px;
-  height: 360px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .modal .form form {

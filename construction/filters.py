@@ -9,4 +9,4 @@ class TransactionFilter(django_filters.FilterSet):
     class Meta:
         model = Transaction
         fields = '__all__'
-        exclude = ['amount', 'trans_method', 'trans_date', 'comments']
+        exclude = ['amount', 'trans_method', 'trans_date', 'comments', 'image']
