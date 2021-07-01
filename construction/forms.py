@@ -7,9 +7,9 @@ from django.forms import ModelForm
 
 class CustomAuthForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput(
-        attrs={'class': 'validate', 'placeholder': 'Your Username'}))
+        attrs={'class': 'validate', 'placeholder': 'Your Username', 'style': 'width: 100%;', 'class': 'form-control'}))
     password = forms.CharField(widget=PasswordInput(
-        attrs={'placeholder': 'Password'}))
+        attrs={'placeholder': 'Password', 'style': 'width: 100%;', 'class': 'form-control'}))
 
 
 class TransactionForm(ModelForm):
