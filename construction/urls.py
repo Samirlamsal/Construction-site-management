@@ -18,6 +18,8 @@ urlpatterns = [
     path('construction_home/', views.constructionHomeView,
          name='construction_home'),
     path('xls_download', views.export_users_xls, name='xls_download'),
+    path('construction_home/<int:id>',
+         views.individualsiteView, name='individualsite'),
 
 
 

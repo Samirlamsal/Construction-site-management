@@ -1,0 +1,122 @@
+{% extends 'pages/base.html' %} {% load static%} {% load humanize %}
+
+<body>
+  {% block content2 %}
+  <div class="solocontent">
+    <div class="soloheader">
+      <div class="sololines">
+        <h1>Construction Site:</h1>
+        &nbsp;&nbsp;
+        <h2>PoonhillResort</h2>
+      </div>
+      <div class="hr"></div>
+      <div class="sololines">
+        <h1>Estimated Cost:</h1>
+        &nbsp;&nbsp;
+        <h2>Rs 24,00,000</h2>
+      </div>
+      <div class="hr"></div>
+      <div class="sololines">
+        <h1>Estimated Date of Completion:</h1>
+        &nbsp;&nbsp;
+        <h2>24 Ashad 2078</h2>
+      </div>
+      <div class="hr"></div>
+      <div class="sololines">
+        <h1>Spent So far:</h1>
+        &nbsp;&nbsp;
+        <h2>Rs 23,00,000</h2>
+      </div>
+      <div class="hr"></div>
+      <div class="sololines">
+        <h1>Superviser:</h1>
+        &nbsp;&nbsp;
+        <h2>Ravi Kishan Subedi</h2>
+      </div>
+    </div>
+
+    <div class="solotransactions">
+      <div class="transactions">
+        <div class="title">
+          <h2>Transactions</h2>
+          <div class="filter">
+            <div class="box" onclick="filtermodal();">
+              <i class="fa fa-filter" aria-hidden="true"></i>
+              <h3>Filter</h3>
+            </div>
+            <div
+              class="box"
+              id="createtransaction"
+              onclick="createtransactions()"
+            >
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <h3>Create Transaction</h3>
+            </div>
+          </div>
+        </div>
+        <div class="hr"></div>
+
+        <div class="table">
+          <table style="width: 100%">
+            <tr>
+              <th>ID</th>
+              <th>AMOUNT</th>
+              <th>STATUS</th>
+              <th>TRANS TYPE</th>
+              <!-- <th>SUBMITTED BY</th> -->
+              <!-- <th>CONSTRUCTION SITE</th> -->
+              <th>DATE</th>
+              <th>COMMENTS</th>
+              <th>CREDENTIALS</th>
+            </tr>
+            {% for trans_data in trans_datas %}
+            <tr>
+              <td>{{trans_data.id}}</td>
+              <td>{{trans_data.amount}}</td>
+              <td>
+                {%if trans_data.status == "Confirmed"%}
+
+                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;
+                {{trans_data.status}} {%else%}
+
+                <i class="fa fa-times" aria-hidden="true"></i>&nbsp;
+                {{trans_data.status}} {%endif%}
+              </td>
+              <td>{{trans_data.trans_type}}</td>
+              <!-- <td>{{trans_data.trans_user}}</td> -->
+              <!-- <td>{{trans_data.trans_site.name}}</td> -->
+              <td>{{trans_data.trans_date}}</td>
+              <td>{{trans_data.comments}}</td>
+              <td>
+                {% if trans_data.image %}
+                <a target="_blank" href="{{ trans_data.image.url }}"
+                  ><i class="fa fa-paperclip"></i>
+                </a>
+                {% else %}
+                <a href="#"><i class="fa fa-paperclip"></i> </a>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %} {% block content3 %}
+  <div id="xls_modal" class="download_xls">
+    <div class="xls_modal">
+      <a href="{% url 'xls_download' %}" style="text-decoration: none">
+        <h1 onclick="close_xls_modal();">
+          <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+          &nbsp;&nbsp;Download XLS
+        </h1></a
+      >
+      <div class="close" onclick="close_xls_modal();">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</body>

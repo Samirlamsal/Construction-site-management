@@ -21,7 +21,9 @@
             <h2>{{construction_detail.superviser.fullname}}</h2>
           </div>
           <div class="more">
-            <a href="#">More &nbsp;&nbsp;<i class="fa fa-arrow-right"></i> </a>
+            <a href="{% url 'individualsite' construction_detail.id %}"
+              >More &nbsp;&nbsp;<i class="fa fa-arrow-right"></i>
+            </a>
           </div>
         </div>
       </div>

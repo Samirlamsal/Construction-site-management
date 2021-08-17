@@ -53,6 +53,12 @@ def constructionHomeView(request):
 
 
 @login_required
+def individualsiteView(request, id):
+    individualsite = Construction_Site.objects.get(id=id)
+    return render(request, 'pages/individualsite.html', {'site': individualsite})
+
+
+@login_required
 def export_users_xls(request):
     today_date = datetime.today()
     response = HttpResponse(content_type='application/ms-excel')

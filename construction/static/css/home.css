@@ -750,3 +750,44 @@ p:hover {
   color: #007ae9;
   padding-right: 10px;
 }
+
+/* Individual Pages */
+.solocontent {
+  width: 100%;
+}
+.soloheader {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  border: 1px solid #e6e6ee;
+  width: 90;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.soloheader .sololines {
+  display: flex;
+  padding: 10px 0px;
+}
+
+.soloheader .sololines .hr {
+  border-top: 1px solid black;
+}
+
+.soloheader h1 {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  color: #252733;
+}
+
+.soloheader h2 {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  color: #081f32;
+}
