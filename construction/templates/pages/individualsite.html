@@ -7,13 +7,13 @@
       <div class="sololines">
         <h1>Construction Site:</h1>
         &nbsp;&nbsp;
-        <h2>PoonhillResort</h2>
+        <h2>{{site.name}}</h2>
       </div>
       <div class="hr"></div>
       <div class="sololines">
         <h1>Estimated Cost:</h1>
         &nbsp;&nbsp;
-        <h2>Rs 24,00,000</h2>
+        <h2>Rs {{site.budget|intcomma}}</h2>
       </div>
       <div class="hr"></div>
       <div class="sololines">
@@ -25,13 +25,13 @@
       <div class="sololines">
         <h1>Spent So far:</h1>
         &nbsp;&nbsp;
-        <h2>Rs 23,00,000</h2>
+        <h2>Rs {{site.expensed|intcomma}}</h2>
       </div>
       <div class="hr"></div>
       <div class="sololines">
         <h1>Superviser:</h1>
         &nbsp;&nbsp;
-        <h2>Ravi Kishan Subedi</h2>
+        <h2>{{site.superviser}}</h2>
       </div>
     </div>
 
@@ -105,6 +105,101 @@
   </div>
 
   {% endblock %} {% block content3 %}
+  <div id="filtermodal" class="filtermodal">
+    <div class="modal">
+      <h1>
+        <i class="fa fa-filter" aria-hidden="true"></i>&nbsp;Filter Ledger
+      </h1>
+      <div class="close" onclick="closefiltermodal();">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+      <h2>Filter by:</h2>
+      <div class="form">
+        <form method="get">
+          <div class="hr"></div>
+          <!-- <div class="input_field">
+            <h3>Submited by</h3>
+            {{myFilter.form.trans_user}}
+          </div> -->
+          <!-- <div class="hr"></div> -->
+          <div class="input_field">
+            <h3>Since</h3>
+            {{myFilter.form.start_date}}
+          </div>
+          <div class="hr"></div>
+          <!-- <div class="input_field">
+            <h3>Construction Site</h3>
+            {{myFilter.form.trans_site}}
+          </div> -->
+          <div class="hr"></div>
+          <div class="input_field">
+            <h3>Status</h3>
+            {{myFilter.form.confirmation_status}}
+          </div>
+          <div class="hr"></div>
+          <div class="submit_field">
+            <input type="submit" value="Filter" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="createtransactionmodal" class="createtransactionmodal">
+    <div class="modal">
+      <h1>
+        <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+        &nbsp;Create Transaction
+      </h1>
+      <div class="close" onclick="closecreatetransactions();">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+      <div class="form">
+        <form
+          action="{% url 'individualsite' site.id %}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+          <!-- <div class="hr"></div>
+          <div class="input_field">
+            <h3>Construction Site</h3>
+            {{form.trans_site}}
+          </div> -->
+          <div class="hr"></div>
+          <div class="input_field">
+            <h3>Amount</h3>
+            {{form.amount}}
+          </div>
+          <div class="hr"></div>
+          <div class="input_field">
+            <h3>Transaction Method</h3>
+            {{form.trans_method}}
+          </div>
+          <div class="hr"></div>
+          <div class="input_field">
+            <h3>Comments</h3>
+            {{form.comments}}
+          </div>
+          <div class="hr"></div>
+          <div class="input_field">
+            <h3>Receipt</h3>
+            {{form.image}}
+          </div>
+          <div class="hr"></div>
+          <div class="submit_field_transaction">
+            <input
+              type="button"
+              onclick="closecreatetransactions();"
+              value="Cancel"
+            /><input type="submit" value="Create" />
+          </div>
+        </form>
+
+        <img src="{% static 'images/flower.png' %}" />
+      </div>
+    </div>
+  </div>
   <div id="xls_modal" class="download_xls">
     <div class="xls_modal">
       <a href="{% url 'xls_download' %}" style="text-decoration: none">

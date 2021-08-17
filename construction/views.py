@@ -29,7 +29,6 @@ def transactionHomeView(request):
             'comments': request.POST['comments'],
             'image': request.FILES.get('image')
         }
-        print(data)
         form = TransactionForm(data, request.FILES)
 
         if form.is_valid():
@@ -49,13 +48,36 @@ def constructionHomeView(request):
     username = request.user.site_user.name
     construction_detail = Construction_Site.objects.filter(
         superviser__name=username)
+
     return render(request, 'pages/constructionpage.html', {'construction_detail': construction_detail})
 
 
 @login_required
 def individualsiteView(request, id):
     individualsite = Construction_Site.objects.get(id=id)
-    return render(request, 'pages/individualsite.html', {'site': individualsite})
+    sitename = individualsite.name
+    print(sitename)
+    if request.method == 'POST':
+        data = {
+            'trans_user': request.user.site_user,
+            'amount': request.POST['amount'],
+            'trans_site': individualsite.id,
+            'trans_method': request.POST['trans_method'],
+            'comments': request.POST['comments'],
+            'image': request.FILES.get('image')
+        }
+        print(data)
+        form = TransactionForm(data, request.FILES)
+
+        if form.is_valid():
+            form.save()
+        return redirect('individualsite', id=int(id))
+    else:
+        form = TransactionForm()
+        trans_datas = Transaction.objects.filter(trans_site__name=sitename)
+        myFilter = TransactionFilter(request.GET, queryset=trans_datas)
+        trans_datas = myFilter.qs
+    return render(request, 'pages/individualsite.html', {'site': individualsite, 'trans_datas': trans_datas, 'myFilter': myFilter, 'form': form})
 
 
 @login_required
