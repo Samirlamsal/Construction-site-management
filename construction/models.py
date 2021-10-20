@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import SET_NULL
 
 
 class Site_User(models.Model):
@@ -71,3 +72,28 @@ class Transaction(models.Model):
         else:
             status = 'Not Confirmed'
         return str(status)
+
+
+class Worker(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='workerimages/', null=True, blank=True)
+    designation = models.CharField(max_length=200, blank=True, null=True)
+    # startday = models.DateField()
+    site = models.ForeignKey(
+        Construction_Site, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class AttendenceReport(models.Model):
+    worker = models.ForeignKey(
+        Worker, on_delete=models.SET_NULL, null=True, blank=True)
+    site = models.ForeignKey(
+        Construction_Site, on_delete=models.SET_NULL, null=True, blank=True)
+    present = models.BooleanField(default=False)
+    date = models.DateField()
+
+    def __str__(self):
+        return str(self.date)

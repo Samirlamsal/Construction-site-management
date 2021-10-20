@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from . models import Site_User, Construction_Site, Transaction
+from . models import Site_User, Construction_Site, Transaction, AttendenceReport, Worker
 from . filters import TransactionFilter
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
@@ -30,7 +30,6 @@ def transactionHomeView(request):
             'image': request.FILES.get('image')
         }
         form = TransactionForm(data, request.FILES)
-
         if form.is_valid():
             form.save()
         return redirect('/transaction_home/')
@@ -114,3 +113,23 @@ def export_users_xls(request):
             ws.write(row_num, col_num, row[col_num], font_style)
     wb.save(response)
     return response
+
+
+@login_required
+def attendenceView(request, id):
+    workers = Worker.objects.filter(site=id)
+    # print(attendence[0].date.day)
+    # for i in range(1, 33):
+    #     if attendence[0].date.day == i and attendence[0].present == True and attendence[0].worker == workers.name:
+    #         print('present')
+    #     else:
+    #         print('absent')
+    attendence = AttendenceReport.objects.all()
+    if attendence.present == True:
+        print(attendence.worker)
+    days = []
+    for i in attendence:
+        if days != i.date.day:
+            days.append(i.date.day)
+
+    return render(request, 'pages/attendencepage.html', {'range': days, 'workers': workers, 'attendence': attendence})

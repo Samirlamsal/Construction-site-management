@@ -1,0 +1,29 @@
+{% extends 'pages/base.html' %} {% load static%} {% load humanize %}
+
+<body>
+  {% block content2 %}
+  <div class="table attendencetable">
+    <table style="width: 100%">
+      <tr>
+        <th>Name</th>
+        {% for i in range %}
+        <th>{{ forloop.counter }}</th>
+        {% endfor %}
+      </tr>
+      {%for worker in workers%} 
+      <tr>
+        <td>{{worker.name}}</td>
+
+        <td>
+       
+
+          <i class="fa fa-check-square"></i> 
+
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </td>
+      </tr>
+      {%endfor%}
+    </table>
+  </div>
+  {% endblock %}
+</body>

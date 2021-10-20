@@ -791,3 +791,27 @@ p:hover {
   font-size: 14px;
   color: #081f32;
 }
+
+/* Attendence page */
+
+.attendencetable {
+  overflow-x: auto;
+}
+
+.attendencetable th {
+  min-width: 60px;
+}
+
+.attendencetable th:nth-child(1) {
+  min-width: 200px;
+}
+
+.attendencetable td {
+  color: #484c58;
+  padding: 4px;
+  font-weight: 600;
+}
+
+.attendencetable td i {
+  color: #7cc54b;
+}
